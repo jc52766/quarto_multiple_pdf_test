@@ -1,0 +1,40 @@
+---
+title: "Parameterized Report example"
+author: "Jason Corderoy"
+format: pdf
+knitr:
+  opts_chunk:
+    collapse: true
+params:
+  cyl: 6
+---
+
+Hi there cyl = **`r params$cyl`**
+
+```{r}
+#| message: false
+#| warning: false
+#| echo: false
+library(tidyverse)
+```
+
+```{r}
+#| message: false
+#| warning: false
+#| echo: false
+mtcars |>
+ggplot( aes(
+  x=hp, 
+  y=mpg,
+  fill = (cyl == params$cyl)
+  )
+  ) +
+  geom_point(size=4, shape=21, col='white', show.legend=FALSE) +
+    geom_point(
+      data=mtcars %>% filter(cyl == params$cyl),
+      size=4, shape=21, col='white', show.legend=FALSE) +
+  scale_fill_manual(
+    values = c("TRUE" = "dodgerblue4", "FALSE" = "gray80")
+    ) +
+      theme_minimal(base_size=12)
+```
