@@ -1,5 +1,4 @@
 ---
-title: "Parameterized Report example"
 author: "Jason Corderoy"
 format: pdf
 knitr:
@@ -9,7 +8,7 @@ params:
   cyl: 6
 ---
 
-Hi there cyl = **`r params$cyl`**
+# cyl : **`r params$cyl`**
 
 ```{r}
 #| message: false
